@@ -1,0 +1,180 @@
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<!-- saved from url=(0016)http://localhost -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea,
+input[type=password] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: center;
+  float: left;
+
+  margin-top: 6px;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 50px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+.col-15 {
+  float: left;
+  width: 15%;
+  margin-top: 6px;
+}
+.col-75 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+.row{
+align:center;
+}
+/* Clear floats after the columns */
+.row:after {
+
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h2{
+text-align:center;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2 >Removals</h2>
+<div class="container">
+<form action="/action_page.php">
+<div class="row">
+<div class="col-25">
+</div>
+      <div class="col-25">
+  <label for="OperatorCode">Operator Code:</label>
+</div>
+ <div class="col-75">
+  <input type="text" name="OperatorCode" id="OperatorCode">
+</div>
+<div class="col-25">
+</div>
+</div>
+
+ <div class="row">
+
+
+<div class="col-25">
+</div>
+      <div class="col-25">
+  <label for="OperatorPass">Operator Password:</label>
+</div>
+ <div class="col-75">
+  <input type="password" name="OperatorPass" id="OperatorPass">
+ </div>
+<div class="col-25">
+</div>
+</div>
+ <div class="row">
+<div class="col-25">
+</div>
+
+
+      <div class="col-25">
+
+  <label for="type">Type:</label>
+</div>
+ <div class="col-75">
+<select id="type">
+<option value="Ocean Import">Ocean Import</option>
+<option value="Ocean Export">Ocean Export</option>
+<option value="Domestic">Domestic</option>
+</select>
+<div class="col-25">
+</div>
+<div class="col-25">
+</div>
+</div>
+</div>
+
+
+ <div class="row">
+
+
+
+
+
+
+
+<div class="col-25">
+</div>
+<div class="col-25">
+</div>
+  <input type="submit" value="Submit" id="SubmitButton">
+ </div>
+</form> 
+</div>
+
+
+<script>
+   document.getElementById("SubmitButton").onclick = function() {
+
+		// After the values have been submited we gather all the relevant data
+   		var OperatorCode= document.getElementById("OperatorCode").value;
+   		var OperatorPass = document.getElementById("OperatorPass").value;
+   		var type = document.getElementById("type").value;
+
+   		// Contrusct a json string shich contain the values
+   		var OutputString = "{\"OperatorCode\":\"" + OperatorCode + "\","  +  "\"OperatorPass\":\"" + OperatorPass + "\"," + "\"type\":\"" + type + "\"}";
+
+   		// Here is the important bit. For a to be valid in terms of the activity the following line needs to be included and called at some point in the execution of the form.
+   		//Once the command has been called a string can be passed back to UiPath and the form will close
+   		window.external.setResult(OutputString);
+   		};
+</script>
+
+</body>
+</html>
